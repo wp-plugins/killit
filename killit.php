@@ -3,7 +3,7 @@
 Plugin Name: Killit
 Plugin URI: http://thebyob.com/killit
 Description: Killit disables all WordPress auto-formatting. Similar to the popular Raw HTML plugin but applies the effect to all posts and pages automatically.
-Version: 0.5
+Version: 1.0
 Author: Josh Davis
 Author URI: http://josh.isthecatsmeow.com/
 */
