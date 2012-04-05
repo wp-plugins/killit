@@ -2,7 +2,7 @@
 /*
 Plugin Name: Killit
 Plugin URI: http://thebyob.com/killit
-Description: Killit disables all WordPress auto-formatting. Similar to the popular Raw HTML plugin but applies the effect to all posts and pages automatically.
+Description: Disables all WordPress auto-formatting automatically. Similar to the popular RawHTML plugin, but applies the effect to all posts & pages automatically. Has options to remove wpautop, wptexturize, convert_chars, and/or convert_smilies from the_content and/or the excerpt.
 Version: 1.0
 Author: Josh Davis
 Author URI: http://josh.isthecatsmeow.com/
@@ -58,7 +58,7 @@ function killit_options() {
 	</tr>
         <tr><td><input type="checkbox" name="autop" value="1" <?php checked( '1', get_option( 'autop' ) ); ?> /> wpautop <span>- Replaces line breaks with &lt;p&gt; &amp; &lt;br /&gt; tags</span></td></tr>
         <tr><td><input type="checkbox" name="texturize" value="1" <?php checked( '1', get_option( 'texturize' ) ); ?> /> wptexturize <span>- Transforms dashes, quotes, and symbols</span></td></tr>
-        <tr><td><input type="checkbox" name="chars" value="1" <?php checked( '1', get_option( 'chars' ) ); ?> /> convert_chars <span>- Removes metadata and replaces &lt;br&gt; &amp; &lt;hr&gt; tags into correct XHTML and Unicode characters</span></td></tr>
+        <tr><td><input type="checkbox" name="chars" value="1" <?php checked( '1', get_option( 'chars' ) ); ?> /> convert_chars <span>- Removes metadata and converts &lt;br&gt; &amp; &lt;hr&gt; tags into correct XHTML and Unicode characters</span></td></tr>
         <tr><td><input type="checkbox" name="smilies" value="1" <?php checked( '1', get_option( 'smilies' ) ); ?> /> convert_smilies <span>- Converts text equivalent of smilies to images</span></td></tr>
 	<tr valign="top">
         <th scope="row"><b>from these places:</b></th>
