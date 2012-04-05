@@ -24,21 +24,80 @@ Author URI: http://josh.isthecatsmeow.com/
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+function register_mysettings() {
+	$setting_vars = array(
+		'autop',
+		'texturize',
+		'chars',
+		'smilies',
+		'wpexcerpt',
+		'wpcontent'
+		);
+	foreach ( $setting_vars as $setting_var){
+		register_setting('killit_son', $setting_var);
+	}
+}
+add_action( 'admin_init', 'register_mysettings' );
+
+function killit_menu() {
+	add_options_page( 'Killit Settings', 'Killit', 'manage_options', 'killit_uid', 'killit_options' );
+}
+
+function killit_options() {
+	if ( !current_user_can( 'manage_options' ) )  {
+		wp_die( __( 'You do not have sufficient permissions to access this page.' ) );
+	}
+	echo '<div class="wrap"><h2>Killit Settings</h2><form method="post" action="options.php">';
+	settings_fields('killit_son');
+?>
+
+<table class="form-table">
+        <tr valign="top">
+        <th scope="row"><b>Remove this formatting:</b></th>
+	</tr>
+        <tr><td><input type="checkbox" name="autop" value="1" <?php checked( '1', get_option( 'autop' ) ); ?> /> wpautop</td></tr>
+        <tr><td><input type="checkbox" name="texturize" value="1" <?php checked( '1', get_option( 'texturize' ) ); ?> /> wptexturize</td></tr>
+        <tr><td><input type="checkbox" name="chars" value="1" <?php checked( '1', get_option( 'chars' ) ); ?> /> convert_chars</td></tr>
+        <tr><td><input type="checkbox" name="smilies" value="1" <?php checked( '1', get_option( 'smilies' ) ); ?> /> convert_smilies</td></tr>
+	<tr valign="top">
+        <th scope="row"><b>from these places:</b></th>
+	</tr>
+        <tr><td><input type="checkbox" name="wpexcerpt" value="1" <?php checked( '1', get_option( 'wpexcerpt' ) ); ?> /> The excerpt</td></tr>
+        <tr><td><input type="checkbox" name="wpcontent" value="1" <?php checked( '1', get_option( 'wpcontent' ) ); ?> /> The content</td></tr>
+</table>
+<p class="submit">
+<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
+</p>
+
+<?php
+	echo '</form></div>';
+}
+add_action( 'admin_menu', 'killit_menu' );
+
 function killit_formatting_filters(){
-	$types = array(
-		'wpautop',
-		'wptexturize',
-		'convert_chars',
-		'convert_smilies',
-	);
-	$filters = array(
-		'the_content' => $types,
-		'the_excerpt' => $types,
-	);
-	
-	foreach ( $filters as $tag => $functions ){
-		foreach ( $functions as $func ){
-			remove_filter($tag, $func);
+	$filters = array();
+	if ( get_option('autop') == 1) {
+		$filters[] = 'wpautop';
+	}
+	if ( get_option('texturize') == 1) {
+		$filters[] = 'wptexturize';
+	}
+	if ( get_option('chars') == 1) {
+		$filters[] = 'convert_chars';
+	}
+	if ( get_option('smilies') == 1) {
+		$filters[] = 'convert_smilies';
+	}
+	$places = array();
+	if ( get_option('wpexcerpt') == 1) {
+		$places[] = 'the_excerpt';
+	}
+	if ( get_option('wpcontent') == 1) {
+		$places[] = 'the_content';
+	}
+	foreach ($places as $place){
+		foreach ($filters as $filter){
+			remove_filter($place,$filter);
 		}
 	}
 }
