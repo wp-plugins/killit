@@ -3,7 +3,7 @@
 Plugin Name: Killit
 Plugin URI: http://thebyob.com/killit
 Description: Killit disables all WordPress auto-formatting. Similar to the popular Raw HTML plugin but applies the effect to all posts and pages automatically.
-Version: 1.0
+Version: 0.5
 Author: Josh Davis
 Author URI: http://josh.isthecatsmeow.com/
 */
@@ -51,19 +51,20 @@ function killit_options() {
 	settings_fields('killit_son');
 ?>
 
+<style>.wrap form td span{color:#888;}</style>
 <table class="form-table">
         <tr valign="top">
         <th scope="row"><b>Remove this formatting:</b></th>
 	</tr>
-        <tr><td><input type="checkbox" name="autop" value="1" <?php checked( '1', get_option( 'autop' ) ); ?> /> wpautop</td></tr>
-        <tr><td><input type="checkbox" name="texturize" value="1" <?php checked( '1', get_option( 'texturize' ) ); ?> /> wptexturize</td></tr>
-        <tr><td><input type="checkbox" name="chars" value="1" <?php checked( '1', get_option( 'chars' ) ); ?> /> convert_chars</td></tr>
-        <tr><td><input type="checkbox" name="smilies" value="1" <?php checked( '1', get_option( 'smilies' ) ); ?> /> convert_smilies</td></tr>
+        <tr><td><input type="checkbox" name="autop" value="1" <?php checked( '1', get_option( 'autop' ) ); ?> /> wpautop <span>- Replaces line breaks with &lt;p&gt; &amp; &lt;br /&gt; tags</span></td></tr>
+        <tr><td><input type="checkbox" name="texturize" value="1" <?php checked( '1', get_option( 'texturize' ) ); ?> /> wptexturize <span>- Transforms dashes, quotes, and symbols</span></td></tr>
+        <tr><td><input type="checkbox" name="chars" value="1" <?php checked( '1', get_option( 'chars' ) ); ?> /> convert_chars <span>- Removes metadata and replaces &lt;br&gt; &amp; &lt;hr&gt; tags into correct XHTML and Unicode characters</span></td></tr>
+        <tr><td><input type="checkbox" name="smilies" value="1" <?php checked( '1', get_option( 'smilies' ) ); ?> /> convert_smilies <span>- Converts text equivalent of smilies to images</span></td></tr>
 	<tr valign="top">
         <th scope="row"><b>from these places:</b></th>
 	</tr>
-        <tr><td><input type="checkbox" name="wpexcerpt" value="1" <?php checked( '1', get_option( 'wpexcerpt' ) ); ?> /> The excerpt</td></tr>
-        <tr><td><input type="checkbox" name="wpcontent" value="1" <?php checked( '1', get_option( 'wpcontent' ) ); ?> /> The content</td></tr>
+        <tr><td><input type="checkbox" name="wpexcerpt" value="1" <?php checked( '1', get_option( 'wpexcerpt' ) ); ?> /> the_excerpt <span>- The excerpt</span></td></tr>
+        <tr><td><input type="checkbox" name="wpcontent" value="1" <?php checked( '1', get_option( 'wpcontent' ) ); ?> /> the_content <span>- The content</span></td></tr>
 </table>
 <p class="submit">
 <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
