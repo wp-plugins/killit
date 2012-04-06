@@ -2,7 +2,7 @@
 /*
 Plugin Name: Killit
 Plugin URI: http://thebyob.com/killit
-Description: Disables all WordPress auto-formatting automatically. Similar to the popular RawHTML plugin, but applies the effect to all posts & pages automatically. Has options to remove wpautop, wptexturize, convert_chars, and/or convert_smilies from the_content and/or the excerpt.
+Description: Killit disables all WordPress auto-formatting. Similar to the popular Raw HTML plugin but applies the effect to all posts and pages automatically.
 Version: 1.0
 Author: Josh Davis
 Author URI: http://josh.isthecatsmeow.com/
@@ -51,21 +51,23 @@ function killit_options() {
 	settings_fields('killit_son');
 ?>
 
-<style>.wrap form td span{color:#888;}</style>
-<table class="form-table">
-        <tr valign="top">
-        <th scope="row"><b>Remove this formatting:</b></th>
-	</tr>
-        <tr><td><input type="checkbox" name="autop" value="1" <?php checked( '1', get_option( 'autop' ) ); ?> /> wpautop <span>- Replaces line breaks with &lt;p&gt; &amp; &lt;br /&gt; tags</span></td></tr>
-        <tr><td><input type="checkbox" name="texturize" value="1" <?php checked( '1', get_option( 'texturize' ) ); ?> /> wptexturize <span>- Transforms dashes, quotes, and symbols</span></td></tr>
-        <tr><td><input type="checkbox" name="chars" value="1" <?php checked( '1', get_option( 'chars' ) ); ?> /> convert_chars <span>- Removes metadata and converts &lt;br&gt; &amp; &lt;hr&gt; tags into correct XHTML and Unicode characters</span></td></tr>
-        <tr><td><input type="checkbox" name="smilies" value="1" <?php checked( '1', get_option( 'smilies' ) ); ?> /> convert_smilies <span>- Converts text equivalent of smilies to images</span></td></tr>
-	<tr valign="top">
-        <th scope="row"><b>from these places:</b></th>
-	</tr>
-        <tr><td><input type="checkbox" name="wpexcerpt" value="1" <?php checked( '1', get_option( 'wpexcerpt' ) ); ?> /> the_excerpt <span>- The excerpt</span></td></tr>
-        <tr><td><input type="checkbox" name="wpcontent" value="1" <?php checked( '1', get_option( 'wpcontent' ) ); ?> /> the_content <span>- The content</span></td></tr>
-</table>
+<style>.wrap form td span{color:#888;} .wrap legend{font-size:13px; font-weight:bold; margin-left:-5px;} .wrap fieldset{margin:10px 0px; padding:15px; padding-top:0px; border:1px solid #ccc;}</style>
+<fieldset>
+	<legend>Remove this formatting:</legend>
+	<table class="form-table">
+		<tr><td><input type="checkbox" name="autop" value="1" <?php checked( '1', get_option( 'autop' ) ); ?> /> wpautop <span>- Replaces line breaks with &lt;p&gt; &amp; &lt;br /&gt; tags</span></td></tr>
+        	<tr><td><input type="checkbox" name="texturize" value="1" <?php checked( '1', get_option( 'texturize' ) ); ?> /> wptexturize <span>- Transforms dashes, quotes, and symbols</span></td></tr>
+        	<tr><td><input type="checkbox" name="chars" value="1" <?php checked( '1', get_option( 'chars' ) ); ?> /> convert_chars <span>- Removes metadata and replaces &lt;br&gt; &amp; &lt;hr&gt; tags into correct XHTML and Unicode characters</span></td></tr>
+        	<tr><td><input type="checkbox" name="smilies" value="1" <?php checked( '1', get_option( 'smilies' ) ); ?> /> convert_smilies <span>- Converts text equivalent of smilies to images</span></td></tr>
+	</table>
+</fieldset>
+<fieldset>
+	<legend>from these places:</legend>
+	<table class="form-table">
+		<tr><td><input type="checkbox" name="wpexcerpt" value="1" <?php checked( '1', get_option( 'wpexcerpt' ) ); ?> /> the_excerpt <span>- The excerpt</span></td></tr>
+		<tr><td><input type="checkbox" name="wpcontent" value="1" <?php checked( '1', get_option( 'wpcontent' ) ); ?> /> the_content <span>- The content</span></td></tr>
+	</table>
+</fieldset>
 <p class="submit">
 <input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
 </p>
