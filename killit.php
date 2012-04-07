@@ -37,9 +37,7 @@ function register_mysettings() {
 		register_setting( 'killit_son', $setting_var );
 		$old_option = get_option( $setting_var );
 		update_option( $setting_var, '1' );
-		if ( $old_option ) {
-			update_option( $setting_var, $old_option );
-		}
+		update_option( $setting_var, $old_option );
 	}
 }
 add_action( 'admin_init', 'register_mysettings' );
