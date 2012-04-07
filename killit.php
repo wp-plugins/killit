@@ -35,8 +35,8 @@ function register_mysettings() {
 		);
 	foreach ( $setting_vars as $setting_var ){
 		register_setting( 'killit_son', $setting_var );
-		$zzz = get_option( $setting_var );
-		if ( $zzz === false ) {
+		$cur_value = get_option( $setting_var );
+		if ( $cur_value === false ) {
 			update_option( $setting_var, '1' );
 		}
 	}
