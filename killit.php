@@ -2,8 +2,8 @@
 /*
 Plugin Name: Killit
 Plugin URI: http://thebyob.com/killit
-Description: Killit disables all WordPress auto-formatting automatically. Similar to the popular RawHTML plugin, but applies the effect to all posts & pages automatically. Has options to remove wpautop, wptexturize, convert_chars, and/or convert_smilies from the_content, the excerpt, and/or comment_text.
-Version: 1.1
+Description: Killit disables all WordPress auto-formatting. Similar to the popular Raw HTML plugin but applies the effect to all posts and pages automatically.
+Version: 1.0
 Author: Josh Davis
 Author URI: http://josh.isthecatsmeow.com/
 */
@@ -34,10 +34,11 @@ function register_mysettings() {
 		'wpcontent'
 		);
 	foreach ( $setting_vars as $setting_var ){
-		$old_option = get_option( $setting_var );
 		register_setting( 'killit_son', $setting_var );
-		update_option( $setting_var, '1' );
-		update_option( $setting_var, $old_option );
+		$zzz = get_option( $setting_var );
+		if ( $zzz === false ) {
+			update_option( $setting_var, '1' );
+		}
 	}
 	register_setting( 'killit_son', 'wpcomment' );
 }
