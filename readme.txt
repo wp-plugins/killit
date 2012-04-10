@@ -3,7 +3,7 @@ Contributors: maxxsnake
 Tags: auto-formatting, disable, auto, formatting, remove, wpautop, rawhtml, raw, html, disable auto formatting, remove auto formatting
 Requires at least: 2.0.2
 
-Killit disables all WordPress auto-formatting automatically. Similar to the popular RawHTML plugin, but applies the effect to all posts & pages automatically. Has options to remove wpautop, wptexturize, convert_chars, and/or convert_smilies from the_content, the excerpt, and/or comment_text.
+Killit disables all WordPress auto-formatting automatically. Similar to the popular RawHTML plugin, but applies the effect to all pages automatically.
 
 == Description ==
 
